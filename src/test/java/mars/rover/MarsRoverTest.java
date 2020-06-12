@@ -20,4 +20,11 @@ class MarsRoverTest {
         assertEquals("5 1 E", newPosition);
     }
 
+    @Test
+    public void
+    acceptance_test_3() {
+        String newPosition = MarsRover.move(0, 0, 'N', "M");
+        assertEquals("0 0 N", newPosition);
+    }
+
 }
