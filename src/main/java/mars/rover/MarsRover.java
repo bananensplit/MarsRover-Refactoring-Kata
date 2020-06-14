@@ -12,6 +12,10 @@ public class MarsRover {
     }
 
     public String move(int x, int y, char direction, String instructions) {
+        if (!check(x, y)) {
+            return String.format("%d %d %s", x, y, direction);
+        }
+
         if (!instructions.isEmpty()) {
             int xbuffer = x;
             int ybuffer = y;
