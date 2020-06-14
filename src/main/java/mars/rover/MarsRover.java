@@ -4,39 +4,28 @@ public class MarsRover {
 
     public static String move(int x, int y, char direction, String instructions) {
         if (!instructions.isEmpty()) {
-            char instruction = instructions.charAt(0);
-            if (instruction == 'L') {
-                if (direction == 'N') {
-                    return move(x, y, 'W', instructions.substring(1, instructions.length()));
-                } else if (direction == 'W') {
-                    return move(x, y, 'S', instructions.substring(1, instructions.length()));
-                } else if (direction == 'S') {
-                    return move(x, y, 'E', instructions.substring(1, instructions.length()));
-                } else if (direction == 'E') {
-                    return move(x, y, 'N', instructions.substring(1, instructions.length()));
-                }
-            } else if (instruction == 'R') {
-                if (direction == 'N') {
-                    return move(x, y, 'E', instructions.substring(1, instructions.length()));
-                } else if (direction == 'W') {
-                    return move(x, y, 'N', instructions.substring(1, instructions.length()));
-                } else if (direction == 'S') {
-                    return move(x, y, 'W', instructions.substring(1, instructions.length()));
-                } else if (direction == 'E') {
-                    return move(x, y, 'S', instructions.substring(1, instructions.length()));
-                }
-            } else if (instruction == 'M') {
-                if (direction == 'N') {
-                    return move(x, y + 1, 'N', instructions.substring(1, instructions.length()));
-                } else if (direction == 'S') {
-                    return move(x, y - 1, 'S', instructions.substring(1, instructions.length()));
-                } else if (direction == 'W') {
-                    return move(x - 1, y, 'W', instructions.substring(1, instructions.length()));
-                } else if (direction == 'E') {
-                    return move(x + 1, y, 'E', instructions.substring(1, instructions.length()));
+            String directions = "NESW";
+            int[] movements = {1, 1, -1, -1};
+
+            for (char instruction : instructions.toCharArray()) {
+                switch (instruction) {
+                    case 'R':
+                        direction = directions.charAt((directions.indexOf(direction) + 1) % 4);
+                        break;
+                    case 'L':
+                        direction = directions.charAt((directions.indexOf(direction) + 4 - 1) % 4);
+                        break;
+                    case 'M':
+                        int index = directions.indexOf(direction);
+                        if (index % 2 == 0) {
+                            y += movements[index];
+                        } else {
+                            x += movements[index];
+                        }
+                        break;
                 }
             }
         }
-        return x + " " + y + " " + direction;
+        return String.format("%d %d %s", x, y, direction);
     }
 }
