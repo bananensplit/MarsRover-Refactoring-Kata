@@ -86,4 +86,22 @@ class MarsRoverTest {
         assertEquals("1 -3 E", newPosition);
     }
 
+    @Test
+    public void acceptance_test_13() {
+        String newPosition = new MarsRover(new int[]{10, 10}).move(10, 10, 'E', "M");
+        assertEquals("10 10 E", newPosition);
+    }
+
+    @Test
+    public void acceptance_test_14() {
+        String newPosition = new MarsRover(new int[]{10, 10}).move(10, 10, 'N', "M");
+        assertEquals("10 10 N", newPosition);
+    }
+
+    @Test
+    public void acceptance_test_15() {
+        String newPosition = new MarsRover(new int[]{10, 10}).move(9, 10, 'E', "MMLLMM");
+        assertEquals("8 10 W", newPosition);
+    }
+
 }
