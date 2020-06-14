@@ -12,18 +12,18 @@ public class MarsRover {
     }
 
     public String move(int x, int y, char direction, String instructions) {
-        if (!check(x, y)) {
+        String directions = "NESW";
+        if (!check(x, y) || !directions.contains(direction + "")) {
             return String.format("%d %d %s", x, y, direction);
         }
 
         if (!instructions.isEmpty()) {
-            int xbuffer = x;
-            int ybuffer = y;
-
-            String directions = "NESW";
             int[] movements = {1, 1, -1, -1};
 
             for (char instruction : instructions.toCharArray()) {
+                int xbuffer = x;
+                int ybuffer = y;
+
                 switch (instruction) {
                     case 'R':
                         direction = directions.charAt((directions.indexOf(direction) + 1) % 4);
@@ -32,17 +32,19 @@ public class MarsRover {
                         direction = directions.charAt((directions.indexOf(direction) + 4 - 1) % 4);
                         break;
                     case 'M':
+                        System.out.println(direction);
                         int index = directions.indexOf(direction);
                         if (index % 2 == 0) {
                             y += movements[index];
                         } else {
                             x += movements[index];
                         }
-                        break;
-                }
 
-                if (!check(x, y)) {
-                    return String.format("%d %d %s", xbuffer, ybuffer, direction);
+                        if (!check(x, y)) {
+                            x = xbuffer;
+                            y = ybuffer;
+                        }
+                        break;
                 }
             }
         }
@@ -51,6 +53,7 @@ public class MarsRover {
 
     /**
      * checks if the Rover is on the defined plane
+     *
      * @param posx x Position of the Rover
      * @param posy y Position of the Rover
      * @return true if the Rover is on the plane, false if the Rover is not on the plane
