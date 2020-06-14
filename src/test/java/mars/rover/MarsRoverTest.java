@@ -32,8 +32,8 @@ class MarsRoverTest {
 
     @Test
     public void acceptance_test_5() {
-        String newPosition = MarsRover.move(3, 3, 'W', "MMMM");
-        assertEquals("0 3 W", newPosition);
+        String newPosition = MarsRover.move(3, 3, 'W', "MMMMLLMM");
+        assertEquals("2 3 E", newPosition);
     }
 
     @Test
@@ -46,6 +46,42 @@ class MarsRoverTest {
 
         assertEquals("1 3 N", newPosition1);
         assertEquals("5 1 E", newPosition2);
+    }
+
+    @Test
+    public void acceptance_test_7() {
+        String newPosition = MarsRover.move(3, 3, 'D', "MMMM");
+        assertEquals("3 3 D", newPosition);
+    }
+
+    @Test
+    public void acceptance_test_8() {
+        String newPosition = MarsRover.move(3, 3, 'N', "");
+        assertEquals("3 3 N", newPosition);
+    }
+
+    @Test
+    public void acceptance_test_9() {
+        String newPosition = MarsRover.move(3, 3, 'N', "S");
+        assertEquals("3 3 N", newPosition);
+    }
+
+    @Test
+    public void acceptance_test_10() {
+        String newPosition = MarsRover.move(1, 3, ' ', "M");
+        assertEquals("1 3  ", newPosition);
+    }
+
+    @Test
+    public void acceptance_test_11() {
+        String newPosition = MarsRover.move(-1, 3, 'E', "M");
+        assertEquals("-1 3 E", newPosition);
+    }
+
+    @Test
+    public void acceptance_test_12() {
+        String newPosition = MarsRover.move(1, -3, 'E', "M");
+        assertEquals("1 -3 E", newPosition);
     }
 
 }
