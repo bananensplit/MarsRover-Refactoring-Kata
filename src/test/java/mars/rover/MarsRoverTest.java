@@ -9,14 +9,14 @@ class MarsRoverTest {
     @Test
     public void
     acceptance_test_1() {
-        String newPosition = MarsRover.move(1, 2, 'N', "LMLMLMLMM");
+        String newPosition = new MarsRover(new int[]{10, 10}).move(1, 2, 'N', "LMLMLMLMM");
         assertEquals("1 3 N", newPosition);
     }
 
     @Test
     public void
     acceptance_test_2() {
-        String newPosition = MarsRover.move(3, 3, 'E', "MMRMMRMRRM");
+        String newPosition = new MarsRover(new int[]{10, 10}).move(3, 3, 'E', "MMRMMRMRRM");
         assertEquals("5 1 E", newPosition);
     }
 
