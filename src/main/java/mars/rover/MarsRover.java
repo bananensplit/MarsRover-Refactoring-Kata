@@ -13,6 +13,9 @@ public class MarsRover {
 
     public String move(int x, int y, char direction, String instructions) {
         if (!instructions.isEmpty()) {
+            int xbuffer = x;
+            int ybuffer = y;
+
             String directions = "NESW";
             int[] movements = {1, 1, -1, -1};
 
@@ -32,6 +35,10 @@ public class MarsRover {
                             x += movements[index];
                         }
                         break;
+                }
+
+                if (!check(x, y)) {
+                    return String.format("%d %d %s", xbuffer, ybuffer, direction);
                 }
             }
         }
